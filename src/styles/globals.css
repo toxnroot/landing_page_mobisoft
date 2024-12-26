@@ -1,21 +1,700 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #040509;
+  --linear-gradient: linear-gradient(to right, rgba(214, 221, 245, 1), rgba(151, 251, 70, 1));
+  --size-desk:1114px;
+
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #040509;
     --foreground: #ededed;
   }
 }
 
 body {
+
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 !important;
+}
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: 
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 50%), /* التدرج */
+    url('/backhero.png'), url('/LinePatarn.png'); /* الصورة الخلفية */
+  background-size: contain; /* تغطية الشاشة */
+  background-position: top; /* تمركز الصورة */
+  background-repeat: no-repeat; /* منع التكرار */
+}
+
+
+
+
+.NavBar {
+  width: var(--size-desk);
+  height: 84px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding: 10px;
+  background-color: transparent;
+  color: #707070;
+  border-bottom: 1px solid #26453b;
+  align-items: center;
+  position: relative;
+  
+}
+
+.NavBar .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.NavBar .logo img {
+  width: 146.12px;
+}
+
+.NavBar .logo h1 {
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.NavBar .links {
+  display: flex;
+  align-items: center;
+  margin-left: 60px;
+}
+
+.NavBar .links ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.NavBar .links ul li {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.NavBar .links ul li:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.NavBar .buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.NavBar .buttons span {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.NavBar .buttons span:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.NavBar .buttons .create {
+  padding: 10px 20px; /* زِد الحشو */
+  border: 1px solid transparent; /* تأكد أن هناك حدود */
+  border-radius: 12px;
+  background: linear-gradient(#000, #000) padding-box,
+    var(--linear-gradient) border-box;
+}
+
+/* إخفاء القائمة الافتراضية في الأجهزة الصغيرة */
+@media (max-width: 768px) {
+  .NavBar {
+    margin-top: 30px;
+  }
+  .NavBar .logo {
+    img{
+      width: 20px;
+    }
+    h1{
+      font-size: 1rem;
+    }
+  }
+  .NavBar .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  /* عرض القائمة عند فتحها */
+  .NavBar .links.open {
+    display: flex;
+  }
+
+  /* تصميم زر القائمة */
+  .toggle-menu {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ffffff;
+  }
+  .NavBar .buttons{
+    margin-left: 10px;
+  }
+}
+
+/* إخفاء زر القائمة في الشاشات الكبيرة */
+@media (min-width: 769px) {
+  .toggle-menu {
+    display: none;
+  }
+}
+
+.Hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 10px;
+  overflow: hidden;
+  .content {
+    width: var(--size-desk);
+    height: 439px;
+    background: rgba(130, 130, 130, 0.151);
+    padding: 40px 20px;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    position: relative; /* ضروري لوضع التأثير خلف النص */
+    
+
+    h1 {
+      font-size: 60px;
+      font-weight: bold;
+      text-align: center;
+      word-wrap: break-word;
+      width: 80%;
+      color: #D6DDF5;
+    }
+
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+      color: #D6DDF599;
+      word-wrap: break-word;
+      width: 80%;
+    }
+
+    /* التأثير */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 140%;
+      background: radial-gradient(circle, rgba(144, 238, 144, 0.3) 0%, rgba(0, 0, 0, 0) 40%);
+      
+      z-index: -1;
+      border-radius: 50px;
+    }
+  }
+
+  .buttons-con {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .getstarted {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: white;
+    color: #26453b;
+    font-weight: bold;
+  }
+
+  .explan {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(#414a42, #414a42) padding-box,
+      var(--linear-gradient) border-box;
+    font-weight: bold;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #26453b;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #324D22;
+}
+.LineView{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  p{
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .images{
+    display: flex;
+    gap: 20px;
+    img{
+      width: 50px;
+    }
+  }
+}
+
+.swiper {
+  width: 1116px;
+  height: fit-content;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px !important;
+  height: 250px !important;
+  gap: 16px;
+  padding: 22px 12px 22px 8px;
+  border: 1px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+    var(--linear-gradient) border-box;
+    cursor: grab;
+
+}
+
+
+.swiper-pagination-bullet{
+  display: none !important;
+}
+.user{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  
+
+  gap: 10px;
+  .image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  .info{
+    .name{
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .job{
+      font-size: 16px;
+      color: #515660;
+    }
+  }
+}
+.bio{
+  word-wrap: break-word;
+  color: #515660;
+}
+
+.SaveTime{
+  position: relative;
+  width: var(--size-desk);
+  display: grid;
+  grid-template-columns: auto 480px;
+  padding: 20px;
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    
+  }
+ .content .title{
+    width: 100%;
+    line-height: 66px;
+    font-size: 50px; /* حجم النص */
+    font-weight: bold; /* وزن النص */
+    background: var(--linear-gradient); /* التدرج اللوني */
+    -webkit-background-clip: text; /* يجعل الخلفية مرئية داخل النص فقط */
+    -webkit-text-fill-color: transparent; /* يجعل لون النص شفافًا */
+    background-clip: text; /* دعم للمتصفحات الأخرى */
+    text-fill-color: transparent;
+    
+    
+  
+ }
+ .content .desc{
+  width: 90%;
+    font-size: 22px; /* حجم النص */
+    color: #707070;
+    word-wrap: break-word;
+    line-height: 25.3px;
+    
+ }
+ .content .getstarted{
+  cursor: pointer;
+  font-size: 17.66px;  ;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+  var(--linear-gradient) border-box;
+  font-weight: bold;
+  margin-top: 40px;
+  
+ }
+ img{
+    width: 100%;
+    filter: drop-shadow(0px 10px 20px rgba(48, 191, 169, 0.7));
+
+ }
+}
+.GetYourTeams-container{
+  width: var(--size-desk);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 41px ;
+}
+.GetYourTeams {
+  h1{
+    width: 773px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: center;
+    font-weight: bold;
+    background: var(--linear-gradient);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  p{
+    width: 773px;
+    height: 50px;
+    margin-top: 10px;
+    font-size: 22px;
+    color: #D6DDF599;
+    font-weight: 400;
+    line-height: 25.3px;
+    text-align: center;
+  }
+  
+}
+.card{
+  width: 431px;
+  padding: 10px;
+  border: 1px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+    var(--linear-gradient) border-box;
+}
+
+.users{
+  width: 936px;
+  display: flex;
+  gap: 34px;
+  flex-wrap: wrap;
+  .iamge2{
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+  }
+  .name2{
+    font-size: 16px !important;
+    font-weight: 700 !important;
+  }
+  .job2{
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #515660;
+  }
+  .message{
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+  }
+}
+.sendmessage{
+  display: flex;
+  gap: 10px;
+  width: 936px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 150px;
+  .msg{
+    width: 411px;
+    padding: 10px 12px 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+    var(--linear-gradient) border-box;
+    font-weight: bold;
+    
+  }
+  .send{
+    width: 66px;
+    height: 44px;
+    cursor: pointer;
+    font-size: 16px;
+     font-weight: 700;
+    padding: 10px 12px 10px 12px;
+    border-radius: 12px;
+    background:var(--linear-gradient);
+    color: var(--background);
+    font-weight: bold;
+  }
+  ::placeholder{
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(214, 221, 245, 0.6);
+    }
+}
+.subscribe{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px ;
+  margin-bottom: 150px;
+}
+.buttons{
+  display: flex;
+  gap: 20px;
+  
+  align-items: center;
+  justify-content: center;
+  .year, .month{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 40px;
+    border-radius: 12px;
+  }
+  .year{
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background-color: rgba(214, 221, 245, 1);
+    color: var(--background);
+  }
+  .month{
+   
+    background-color: rgba(100, 104, 115, 1);
+    color: rgba(214, 221, 245, 0.6);
+  }
+}
+
+
+.cards{
+  display: flex;
+  gap: 65px;
+  align-items: center;
+  justify-content: center;
+}
+.cards .card{
+  width: 284px;
+  height: 484px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: 700;
+  border: 1px solid rgba(214, 221, 245, 1);
+  border-radius: 22px;
+}
+.cards .active {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+  var(--linear-gradient) border-box;
+  background-color: #f0f0f0;
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
+}
+/* ContentSub.css */
+.content-sub- , .content-sub-active {
+  font-family: Arial, sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 10px;
+  padding: 18px 0px;
+}
+
+.custom-list {
+  list-style: none; /* إزالة النقاط الافتراضية */
+  padding: 0;
+  margin: 0;
+}
+
+.custom-list li {
+  display: flex; /* جعل العناصر على خط واحد */
+  align-items: center; /* محاذاة الصورة مع النص */
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.custom-list img {
+  width: 20px; /* حجم الصورة */
+  height: 20px; /* حجم الصورة */
+  margin-right: 10px; /* مسافة بين الصورة والنص */
+}
+.content-sub- {
+  .title- {
+    font-size: 28px;
+    font-weight: 700;
+}
+.desc-{
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(214, 221, 245, 0.6);
+}
+.price-{
+  font-size: 40px;
+  font-weight: 700;
+  
+}
+.btn-{
+  width: 260px;
+  height: 48px;
+  margin: auto;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  padding: 12px 40px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+  var(--linear-gradient) border-box;
+  font-weight: 700;
+}
+.headtitle-{
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(214, 221, 245, 0.6);
+}
+}
+.content-sub-active{
+  .title-active {
+    font-size: 40px;
+    font-weight: 700;
+    background: var(--linear-gradient);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text;
+    text-fill-color: transparent;
+  
+}
+.desc-active{
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(214, 221, 245, 0.6);
+}
+
+.price-active{
+  font-size: 40px;
+  font-weight: 700;
+  
+}
+.btn-active{
+  width: 260px;
+  height: 48px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  padding: 12px 40px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: white;
+  color: var(--background);
+}
+.headtitle-active{
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(214, 221, 245, 0.6);
+}
+
+} 
+
+footer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 50px;
+  background-color: rgba(4, 8, 13, 1);
+  p{
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(214, 221, 245, 0.6);
+  }
 }
